@@ -6,10 +6,15 @@
 class RenderObject {
 protected:
     std::list<Triangle> triangles;
-    RenderObject() = default;
+    RenderObject(Vector);
+    Vector angle;
+    Vector center;
+    void CalcCenter();
 public:
     virtual ~RenderObject() = default;
     std::list<Triangle> GetTriangles() {
         return triangles;
     }
+    Vector GetAngle();
+    void Rotate(Vector);
 };

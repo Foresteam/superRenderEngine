@@ -34,8 +34,11 @@ double Vector::Dot(const Vector& v2) {
     prod += z * v2.z;
     return prod;
 }
+double Vector::GetDistance(const Vector& v2) {
+	return sqrt(x * v2.x + y * v2.y + z * v2.z);
+}
 double Vector::GetLength() {
-    return sqrt(x*x + y*y + z*z);
+    return GetDistance(Vector(0, 0, 0));
 }
 Vector Vector::Normalized() {
     return *this / GetLength();

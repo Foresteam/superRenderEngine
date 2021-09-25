@@ -27,6 +27,12 @@ public:
 	Vector operator-(const Vector& v2) {
 		return Vector(x - v2.x, y - v2.y, z - v2.z);
 	}
+    void operator-=(const Vector& v2) {
+        *this = *this - v2;
+    }
+    void operator+=(const Vector& v2) {
+        *this = *this + v2;
+    }
 	Vector operator*(const Vector& v2) {
 		return Vector(x * v2.x, y * v2.y, z * v2.z);
 	}
@@ -42,6 +48,7 @@ public:
 	Vector WrapScreen();
     Vector Cross(const Vector& v2);
     double Dot(const Vector& v2);
+	double GetDistance(const Vector& v2);
     double GetLength();
     Vector Normalized();
 	static Vector Random();
