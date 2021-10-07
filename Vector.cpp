@@ -1,6 +1,7 @@
 #include "Vector.h"
+#include <math.h>
 
-Vector::Vector(int x, int y, int z) {
+Vector::Vector(double x, double y, double z) {
 	this->x = x;
 	this->y = y;
     this->z = z;
@@ -35,7 +36,7 @@ double Vector::Dot(const Vector& v2) {
     return prod;
 }
 double Vector::GetDistance(const Vector& v2) {
-	return sqrt(x * v2.x + y * v2.y + z * v2.z);
+	return sqrt(pow(x - v2.x, 2) + pow(y - v2.y, 2) + pow(z - v2.z, 2));
 }
 double Vector::GetLength() {
     return GetDistance(Vector(0, 0, 0));
@@ -43,11 +44,38 @@ double Vector::GetLength() {
 Vector Vector::Normalized() {
     return *this / GetLength();
 }
+Vector Vector::Angle() {
+    Vector out = Vector();
+    out.x = atan2(y, x);
+	out.y = atan2(x, z);
+	out.z = 0;
+	return out;
+}
 std::random_device Vector::rd;
 std::mt19937 Vector::gen = std::mt19937(rd());
 std::uniform_int_distribution<> Vector::distrx = std::uniform_int_distribution<>(0, MAXCOLS);
 std::uniform_int_distribution<> Vector::distry = std::uniform_int_distribution<>(0, MAXROWS);
 
-Vector2::Vector2(int x, int y) : Vector::Vector(x, y, 0) {}
-Vector2::Vector2(Vector vec) : Vector2::Vector2(vec.x, vec.y) {}
+Vector2::Vector2(double x, double y) : Vector::Vector(x, y, 0) {}
+Vector2::Vector2(const Vector& vec) : Vector2::Vector2(vec.x, vec.y) {}
 Vector2::Vector2() : Vector2::Vector2(MAXCOLS / 2, MAXROWS / 2) {}
+
+Angle::Angle(double x, double y, double z) : Vector(x, y, z) {
+    Normalize180();
+}
+Angle::Angle(Vector vec) : Angle(vec.x, vec.y, vec.z) {}
+Angle::Angle() : Angle(0, 0, 0) {}
+void Angle::Normalize180() {
+    while (x > M_PI)
+        x -= M_PI;
+	while (x < -M_PI)
+		x += M_PI;
+	while (y > M_PI)
+		y -= M_PI;
+	while (y < -M_PI)
+		y += M_PI;
+	while (z > M_PI)
+		z -= M_PI;
+	while (z < -M_PI)
+		z += M_PI;
+}

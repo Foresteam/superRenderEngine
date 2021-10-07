@@ -21,14 +21,15 @@ RenderEngine* RenderEngine::GetInstance() {
 }
 
 RenderEngine::Pixel RenderEngine::Raycast(Vector2 pos) {
-    Pixel p;
-    double closestZ = -__DBL_MAX__;
+    Pixel p = Pixel(' ');
+    double shortestD = -__DBL_MAX__;
     for (auto ro : renderObjects)
         for (auto tri : ro->GetTriangles())
             if (tri.Contains(pos)) {
-                double z = tri.GetPointProjection(pos).z;
-                if (z > closestZ) {
-                    closestZ = z;
+                Vector t = tri.GetPointProjection(pos);
+                double d = t.GetLength();
+                if (d > shortestD) {
+                    shortestD = d;
                     p = Pixel('#');
                 }
             }

@@ -10,8 +10,8 @@ private:
 	static std::uniform_int_distribution<> distrx; // define the range
 	static std::uniform_int_distribution<> distry; // define the range
 public:
-	int x, y, z;
-	Vector(int x, int y, int z);
+	double x, y, z;
+	Vector(double x, double y, double z);
 	Vector();
 	bool operator<(const Vector& v) const {
 		if (std::min(std::min(x, y), z) < std::min(std::min(v.x, v.y), v.z))
@@ -51,12 +51,22 @@ public:
 	double GetDistance(const Vector& v2);
     double GetLength();
     Vector Normalized();
+	Vector Angle();
 	static Vector Random();
 };
 
 class Vector2 : public Vector {
 public:
-    Vector2(int x, int y);
-    Vector2(Vector vec);
+    Vector2(double x, double y);
+    Vector2(const Vector& vec);
     Vector2();
+};
+
+class Angle : public Vector {
+public:
+	Angle();
+	Angle(Vector);
+	Angle(double x, double y, double z);
+
+	void Normalize180();
 };
