@@ -30,7 +30,7 @@ public:
     void CalcVerteces(Vector* base);
 
     Vector* GetPoints();
-    void Rotate(Vector ang);
+    void Rotate(Angle ang);
 
 	bool Contains(Vector2 point);
     Vector GetNormal();

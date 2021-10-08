@@ -22,7 +22,7 @@ float Triangle::sign(Vector2 p1, Vector2 p2, Vector2 p3) {
 }
 
 bool Triangle::Contains(Vector2 point) {
-	float d1, d2, d3;
+	double d1, d2, d3;
 	bool has_neg, has_pos;
 
 	d1 = sign(point, GetPoint(0), GetPoint(1));
@@ -41,8 +41,13 @@ Vector Triangle::GetPointProjection(Vector point) {
     Vector n = GetNormal();
     return point - n * (point - GetPoint(0)).Dot(n);
 }
+
 Vector* Triangle::GetPoints() {
 	return new Vector[3] { GetPoint(0), GetPoint(1), GetPoint(2) };
+}
+void Triangle::Rotate(Angle ang) {
+	for (int i = 0; i < 3; i++)
+		verteces[i].Rotate(ang);
 }
 
 Triangle::Vertex Triangle::Vertex::FromPoint(Vector point, Vector* base) {
@@ -51,6 +56,7 @@ Triangle::Vertex Triangle::Vertex::FromPoint(Vector point, Vector* base) {
 	return Vertex(d.Angle(), d.GetLength());
 }
 Vector Triangle::Vertex::ToPoint(Vector* base) {
-	auto v = Vector(cos(angle.x), sin(angle.x), 0);
+	auto v = Vector(cos(angle.x), sin(angle.x), cos(angle.y));
+	auto _ = v.GetLength();
 	return *base + v * magnitude;
 }

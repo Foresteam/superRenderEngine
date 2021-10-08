@@ -6,7 +6,9 @@
 int main(int, char**) {
     RenderEngine* render = RenderEngine::GetInstance();
     // render->AddRenderObject(new RORect(Vector2(0, 0), Vector2(10, 10)));
-    render->AddRenderObject(new ROTriangle(Vector2(15, 0), Vector2(40, 7), Vector2(27, 10)));
+    auto tri = new ROTriangle(Vector2(0, 0), Vector2(40, 10), Vector2(27, 20));
+    render->AddRenderObject(tri);
+    // tri->Rotate(Angle(0, M_PI_4));
 
     // Vector2 a = Vector2(5, 5);
     // Vector2 b = Vector2(9, 9);

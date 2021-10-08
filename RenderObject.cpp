@@ -1,10 +1,10 @@
 #include "RenderObject.h"
 
-RenderObject::RenderObject(Vector angle) {
+RenderObject::RenderObject(Angle angle) {
     this->angle = angle;
 }
 
-Vector RenderObject::GetAngle() {
+Angle RenderObject::GetAngle() {
     return angle;
 }
 
@@ -25,6 +25,8 @@ void RenderObject::CalcCenter() {
         tri.CalcVerteces(&center);
 }
 
-void RenderObject::Rotate(Vector rangle) {
+void RenderObject::Rotate(Angle rangle) {
     angle += rangle;
+    for (auto& tri : triangles)
+        tri.Rotate(rangle);
 }

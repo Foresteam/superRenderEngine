@@ -48,7 +48,6 @@ Vector Vector::Angle() {
     Vector out = Vector();
     out.x = atan2(y, x);
 	out.y = atan2(x, z);
-	out.z = 0;
 	return out;
 }
 std::random_device Vector::rd;
@@ -60,22 +59,22 @@ Vector2::Vector2(double x, double y) : Vector::Vector(x, y, 0) {}
 Vector2::Vector2(const Vector& vec) : Vector2::Vector2(vec.x, vec.y) {}
 Vector2::Vector2() : Vector2::Vector2(MAXCOLS / 2, MAXROWS / 2) {}
 
-Angle::Angle(double x, double y, double z) : Vector(x, y, z) {
+Angle::Angle(double x, double y) : Vector2(x, y) {
     Normalize180();
 }
-Angle::Angle(Vector vec) : Angle(vec.x, vec.y, vec.z) {}
-Angle::Angle() : Angle(0, 0, 0) {}
+Angle::Angle(Vector vec) : Angle(vec.x, vec.y) {}
+Angle::Angle() : Angle(0, 0) {}
 void Angle::Normalize180() {
     while (x > M_PI)
-        x -= M_PI;
+        x -= M_PI * 2;
 	while (x < -M_PI)
-		x += M_PI;
+		x += M_PI * 2;
 	while (y > M_PI)
-		y -= M_PI;
+		y -= M_PI * 2;
 	while (y < -M_PI)
-		y += M_PI;
+		y += M_PI * 2;
 	while (z > M_PI)
-		z -= M_PI;
+		z -= M_PI * 2;
 	while (z < -M_PI)
-		z += M_PI;
+		z += M_PI * 2;
 }

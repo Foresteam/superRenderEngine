@@ -29,7 +29,10 @@ RenderEngine::Pixel RenderEngine::Raycast(Vector2 pos) {
                 Vector t = tri.GetPointProjection(pos);
                 double d = t.GetLength();
                 if (d > shortestD) {
+                    Vector* _ = tri.GetPoints();
+                    Vector блять[] = { _[0], _[1], _[2] };
                     shortestD = d;
+                    delete[] _;
                     p = Pixel('#');
                 }
             }

@@ -62,11 +62,20 @@ public:
     Vector2();
 };
 
-class Angle : public Vector {
+class Angle : public Vector2 {
 public:
 	Angle();
 	Angle(Vector);
-	Angle(double x, double y, double z);
+	Angle(double x, double y);
+
+	void operator+=(const Angle& v2) {
+		*(Vector*)this += v2;
+		Normalize180();
+	}
+	void operator-=(const Vector& v2) {
+		*this -= v2;
+		Normalize180();
+	}
 
 	void Normalize180();
 };

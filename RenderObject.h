@@ -6,8 +6,8 @@
 class RenderObject {
 protected:
     std::list<Triangle> triangles;
-    RenderObject(Vector);
-    Vector angle;
+    RenderObject(Angle ang);
+    Angle angle;
     Vector center;
     void CalcCenter();
 public:
@@ -15,6 +15,6 @@ public:
     std::list<Triangle> GetTriangles() {
         return triangles;
     }
-    Vector GetAngle();
-    void Rotate(Vector);
+    Angle GetAngle();
+    void Rotate(Angle ang);
 };
