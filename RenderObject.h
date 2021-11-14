@@ -1,13 +1,13 @@
 #pragma once
-#include "Triangle.h"
+#include <Triangle.h>
 #include <list>
 #include <random>
 
 class RenderObject {
 protected:
     std::list<Triangle> triangles;
-    RenderObject(Angle ang);
-    Angle angle;
+    RenderObject(Quaternion rotation);
+    Quaternion rotation;
     Vector center;
     void CalcCenter();
 public:
@@ -15,6 +15,6 @@ public:
     std::list<Triangle> GetTriangles() {
         return triangles;
     }
-    Angle GetAngle();
-    void Rotate(Angle ang);
+    Quaternion GetRotation();
+    void Rotate(Quaternion rotation);
 };

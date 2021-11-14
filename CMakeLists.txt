@@ -7,15 +7,11 @@ enable_testing()
 add_executable(
     SuperRenderEngine
 
-    Vector.h
-    Triangle.h
     RenderObject.h
     ROTriangle.h
     # RORect.h
     RenderEngine.h
 
-    Vector.cpp
-    Triangle.cpp
     RenderObject.cpp
     ROTriangle.cpp
     # RORect.cpp
@@ -24,7 +20,7 @@ add_executable(
     main.cpp
 )
 
-target_link_libraries(SuperRenderEngine ncurses)
+target_link_libraries(SuperRenderEngine ncurses libforesteamnd)
 add_compile_options(--std=c++20)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

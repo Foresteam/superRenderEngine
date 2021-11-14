@@ -1,11 +1,11 @@
 #include "RenderObject.h"
 
-RenderObject::RenderObject(Angle angle) {
-    this->angle = angle;
+RenderObject::RenderObject(Quaternion rotation) {
+    this->rotation = rotation;
 }
 
-Angle RenderObject::GetAngle() {
-    return angle;
+Quaternion RenderObject::GetRotation() {
+    return rotation;
 }
 
 void RenderObject::CalcCenter() {
@@ -25,8 +25,8 @@ void RenderObject::CalcCenter() {
         tri.CalcVerteces(&center);
 }
 
-void RenderObject::Rotate(Angle rangle) {
-    angle += rangle;
+void RenderObject::Rotate(Quaternion rotation) {
+    this->rotation *= rotation;
     for (auto& tri : triangles)
-        tri.Rotate(rangle);
+        tri.Rotate(rotation);
 }
