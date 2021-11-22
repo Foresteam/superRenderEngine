@@ -5,20 +5,18 @@ include(CTest)
 
 enable_testing()
 
-add_executable(
-    SuperRenderEngine
+add_executable(SuperRenderEngine
+    src/RenderObject.h
+    src/ROTriangle.h
+    # src/RORect.h
+    src/RenderEngine.h
 
-    RenderObject.h
-    ROTriangle.h
-    # RORect.h
-    RenderEngine.h
+    src/RenderObject.cpp
+    src/ROTriangle.cpp
+    # src/RORect.cpp
+    src/RenderEngine.cpp
 
-    RenderObject.cpp
-    ROTriangle.cpp
-    # RORect.cpp
-    RenderEngine.cpp
-
-    main.cpp
+    tests.cpp
 )
 
 target_link_libraries(SuperRenderEngine ncurses foresteamnd)
