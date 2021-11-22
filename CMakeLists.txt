@@ -8,12 +8,12 @@ enable_testing()
 add_executable(SuperRenderEngine
     src/RenderObject.h
     src/ROTriangle.h
-    # src/RORect.h
+    src/RORect.h
     src/RenderEngine.h
 
     src/RenderObject.cpp
     src/ROTriangle.cpp
-    # src/RORect.cpp
+    src/RORect.cpp
     src/RenderEngine.cpp
 
     tests.cpp
