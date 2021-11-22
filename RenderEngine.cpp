@@ -1,5 +1,8 @@
 #include "RenderEngine.h"
 
+int RenderEngine::MAXCOLS = 1;
+int RenderEngine::MAXROWS = 1;
+
 RenderEngine* RenderEngine::instance = nullptr;
 RenderEngine::~RenderEngine() {
 	for (auto ro : renderObjects)
@@ -25,9 +28,9 @@ RenderEngine::Pixel RenderEngine::Raycast(Vector2 pos) {
     double shortestD = -__DBL_MAX__;
     for (auto ro : renderObjects)
         for (auto tri : ro->GetTriangles())
-            if (tri.Contains(pos)) {
-                Vector t = tri.GetPointProjection(pos);
-                double d = t.GetLength();
+            if (tri.PlaneContains(pos)) {
+                Vector t = tri.PlanePointProjection(pos);
+                double d = t.Length();
                 if (d > shortestD) {
                     Vector* _ = tri.GetPoints();
                     Vector блять[] = { _[0], _[1], _[2] };

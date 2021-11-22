@@ -7,6 +7,7 @@ class RenderEngine {
 private:
     std::list<RenderObject*> renderObjects;
     static RenderEngine* instance;
+    static int MAXCOLS, MAXROWS;
 
     struct Pixel {
         char self;

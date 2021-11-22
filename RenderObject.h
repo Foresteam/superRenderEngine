@@ -1,5 +1,5 @@
 #pragma once
-#include <Triangle.h>
+#include <foresteamnd/Triangle.h>
 #include <list>
 #include <random>
 

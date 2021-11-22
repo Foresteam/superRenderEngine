@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(SuperRenderEngine VERSION 0.1.0)
 
 include(CTest)
+
 enable_testing()
 
 add_executable(
@@ -20,8 +21,7 @@ add_executable(
     main.cpp
 )
 
-target_link_libraries(SuperRenderEngine ncurses libforesteamnd)
-add_compile_options(--std=c++20)
+target_link_libraries(SuperRenderEngine ncurses foresteamnd)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
