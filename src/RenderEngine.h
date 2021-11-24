@@ -8,15 +8,7 @@ private:
     std::list<RenderObject*> renderObjects;
     static RenderEngine* instance;
     static int MAXCOLS, MAXROWS;
-
-    struct Pixel {
-        char self;
-        int colorPair;
-        Pixel(char self = ' ', int colorPair = 0) {
-            this->self = self;
-            this->colorPair = colorPair;
-        }
-    };
+    int defaultPair;
 
     Pixel Raycast(Vector2 pos);
 
@@ -27,4 +19,5 @@ public:
     void Render();
 
     void AddRenderObject(RenderObject* ro);
+    void SetDefaultColors(int colorPair);
 };

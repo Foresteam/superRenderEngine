@@ -30,3 +30,8 @@ void RenderObject::Rotate(Quaternion rotation) {
     for (auto& tri : triangles)
         tri.Rotate(rotation);
 }
+
+void RenderObject::Paint(Pixel pixel) {
+    for (auto& tri : triangles)
+        tri.pixel = pixel;
+}

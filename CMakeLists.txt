@@ -6,6 +6,7 @@ include(CTest)
 enable_testing()
 
 add_executable(SuperRenderEngine
+    src/RenderTriangle.h
     src/RenderObject.h
     src/ROTriangle.h
     src/RORect.h

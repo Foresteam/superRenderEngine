@@ -14,6 +14,8 @@ RenderEngine::RenderEngine() {
 	initscr();
 	cbreak();
 	noecho();
+    start_color();
+	defaultPair = 0;
     MAXCOLS = COLS;
     MAXROWS = LINES;
 }
@@ -23,7 +25,7 @@ RenderEngine* RenderEngine::GetInstance() {
 	return instance;
 }
 
-RenderEngine::Pixel RenderEngine::Raycast(Vector2 pos) {
+Pixel RenderEngine::Raycast(Vector2 pos) {
     Pixel p = Pixel(' ');
     double shortestD = -__DBL_MAX__;
     for (auto ro : renderObjects)
@@ -32,11 +34,7 @@ RenderEngine::Pixel RenderEngine::Raycast(Vector2 pos) {
                 Vector t = tri.PlanePointProjection(pos);
                 double d = t.Length();
                 if (d > shortestD) {
-                    Vector* _ = tri.GetPoints();
-                    Vector блять[] = { _[0], _[1], _[2] };
-                    shortestD = d;
-                    delete[] _;
-                    p = Pixel('#');
+                    p = tri.pixel;
                 }
             }
     return p;
@@ -46,11 +44,16 @@ void RenderEngine::Render() {
     for (int y = 0; y < MAXROWS; y++)
         for (int x = 0; x < MAXCOLS; x++) {
             Pixel p = Raycast(Vector2(x, y));
+            attron(COLOR_PAIR(p.colorPair));
             mvaddch(y, x, p.self);
+            attroff(COLOR_PAIR(p.colorPair));
         }
     refresh();
 }
 
 void RenderEngine::AddRenderObject(RenderObject* ro) {
     renderObjects.push_back(ro);
+}
+void RenderEngine::SetDefaultColors(int colorPair) {
+    defaultPair = colorPair;
 }
