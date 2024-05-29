@@ -12,6 +12,6 @@ struct Pixel {
 
 class RenderTriangle : public Triangle {
 public:
-    Pixel pixel;
-    RenderTriangle(Vector a, Vector b, Vector c) : Triangle(a, b, c) {}
+	Pixel pixel;
+	RenderTriangle(Vector a, Vector b, Vector c) : Triangle(a, b, c) {}
 };

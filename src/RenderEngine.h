@@ -5,19 +5,19 @@
 
 class RenderEngine {
 private:
-    std::list<RenderObject*> renderObjects;
-    static RenderEngine* instance;
-    static int MAXCOLS, MAXROWS;
-    int defaultPair;
+	std::list<RenderObject*> renderObjects;
+	static RenderEngine* instance;
+	static int MAXCOLS, MAXROWS;
+	int defaultPair;
 
-    Pixel Raycast(Vector2 pos);
+	Pixel Raycast(Vector2 pos);
 
-    RenderEngine();
+	RenderEngine();
 public:
-    ~RenderEngine();
-    static RenderEngine* GetInstance();
-    void Render();
+	~RenderEngine();
+	static RenderEngine* GetInstance();
+	void Render();
 
-    void AddRenderObject(RenderObject* ro);
-    void SetDefaultColors(int colorPair);
+	void AddRenderObject(RenderObject* ro);
+	void SetDefaultColors(int colorPair);
 };
